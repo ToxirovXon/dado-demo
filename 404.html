@@ -10,10 +10,28 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet" />
     <title>DADO — Har bir makon uchun o‘ziga xos keramika</title>
-    <script type="module" crossorigin src="/dado-demo/assets/index-B-FBioFn.js"></script>
-    <link rel="stylesheet" crossorigin href="/dado-demo/assets/index-Ci2DYoUc.css">
+    <!-- First-load curtain: inline so it paints before the app's CSS/JS arrive (logic: src/lib/preloader.ts). -->
+    <style>#preloader{z-index:9999;background:#373435;justify-content:center;align-items:center;transition:translate .9s cubic-bezier(.76,0,.24,1);display:flex;position:fixed;inset:0}#preloader .pl-inner{flex-direction:column;align-items:center;gap:28px;transition:opacity .35s,translate .6s cubic-bezier(.76,0,.24,1);animation:.9s cubic-bezier(.22,1,.36,1) both pl-in;display:flex}#preloader img{width:168px;height:auto;display:block}#preloader .pl-track{background:#ffffff24;width:151px;height:2px;position:relative;overflow:hidden}#preloader .pl-fill{background:#fff;width:12%;transition:width .9s cubic-bezier(.22,1,.36,1);position:absolute;inset:0 auto 0 0}#preloader.is-done{pointer-events:none;translate:0 -100%}#preloader.is-done .pl-inner{opacity:0;translate:0 -24px}@keyframes pl-in{0%{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}@media (prefers-reduced-motion:reduce){#preloader,#preloader .pl-inner,#preloader .pl-fill{transition:none;animation:none}#preloader.is-done{display:none}}</style>
+    <noscript><style>#preloader{display:none}</style></noscript>
+    <script>
+      document.documentElement.classList.add('is-loading')
+      // Failsafe: never keep the site behind the curtain if the app fails to start.
+      setTimeout(function () {
+        var p = document.getElementById('preloader')
+        document.documentElement.classList.remove('is-loading')
+        if (p) p.classList.add('is-done')
+      }, 9000)
+    </script>
+    <script type="module" crossorigin src="/dado-demo/assets/index-DHScPdVt.js"></script>
+    <link rel="stylesheet" crossorigin href="/dado-demo/assets/index-xM2icZtq.css">
   </head>
   <body>
+    <div id="preloader" aria-hidden="true">
+      <div class="pl-inner">
+        <img src="/dado-demo/assets/logo-light-BDYvaI41.png" width="168" height="54" alt="" />
+        <span class="pl-track"><span class="pl-fill" id="preloader-fill"></span></span>
+      </div>
+    </div>
     <div id="root"></div>
   </body>
 </html>
